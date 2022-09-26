@@ -1,0 +1,81 @@
+﻿@model ProvaCandidato.Data.Entidade.Cliente
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cliente</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cidade.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cidade.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataNascimento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataNascimento)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Ativo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ativo)
+        </dd>
+
+    </dl>
+    <div class="form-horizontal">
+        <h4><b>Observações do Cliente</b></h4>
+        <div class="row" style="flex:auto">
+            @if (Model.clienteObservacoes != null)
+            {
+                foreach (var obs in Model.clienteObservacoes)
+                {
+                    <div class="col-md-12">
+                        <span style="margin-left: 1%">-> @obs.Descricao</span>
+                        <br>
+                    </div>
+                }
+            }
+        </div>
+        
+    <div class="col-md-offset-2 col-md-10">
+        <input type="button" id="btnCriarObs" data-toggle="modal" data-target="#modalOBS"  class="btn btn-default" value="Registrar Obs" />
+        <div id="modalOBS" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    @{
+                        Html.RenderPartial("_PartialObs");
+                    }
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div>
+        
+    </div>
+</div>
+
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Codigo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
